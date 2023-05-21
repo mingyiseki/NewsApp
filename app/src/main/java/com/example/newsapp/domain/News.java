@@ -1,11 +1,31 @@
 package com.example.newsapp.domain;
 
-public class News {
+import java.io.Serializable;
+
+public class News implements Serializable,Comparable{
+    private Long id;
     private String title;
     private String content;
     private String from;
     private String time;
     private int image;
+    private int color;
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getImage() {
         return image;
@@ -45,5 +65,10 @@ public class News {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return (int) (this.id-((News)o).getId());
     }
 }

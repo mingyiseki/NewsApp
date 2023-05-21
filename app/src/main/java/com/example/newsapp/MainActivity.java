@@ -4,9 +4,12 @@ package com.example.newsapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,15 +18,16 @@ import com.example.newsapp.domain.News;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private ListView listview;
-    private News news;
+    private ArrayList<News> listitem;
 
 
     @SuppressLint("MissingInflatedId")
@@ -211,15 +215,17 @@ public class MainActivity extends AppCompatActivity {
                 "本文引自萌娘百科(https://zh.moegirl.org.cn )，文字内容默认使用《知识共享 署名-非商业性使用-相同方式共享 3.0 中国大陆》协议。"};
         String[] from = new String[]{"永雏塔菲", "坤哥", "東雪莲"};
 
-        List<News> listitem = new ArrayList<>();
+        listitem = new ArrayList<>();
 
         // 将上述资源转化为list集合
         for (int i = 0; i < title.length; i++) {
-            news = new News();
+            News news = new News();
+            news.setId((long) i);
             news.setImage(imageId[i]);
             news.setTitle(title[i]);
             news.setContent(context[i]);
             news.setFrom(from[i]);
+            news.setColor(getResources().getColor(R.color.bg_black));
             news.setTime(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
             listitem.add(news);
         }
@@ -230,13 +236,47 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent();
-                intent.putExtra("title", listitem.get(position).getTitle());
-                intent.putExtra("from",listitem.get(position).getFrom());
-                intent.putExtra("time",listitem.get(position).getTime());
-                intent.putExtra("content",listitem.get(position).getContent());
-                intent.setClass(MainActivity.this,DetailActivity.class);
-                startActivity(intent);
+                intent.setClass(MainActivity.this, DetailActivity.class);
+//                intent.putExtra("title", listitem.get(position).getTitle());
+//                intent.putExtra("from",listitem.get(position).getFrom());
+//                intent.putExtra("time",listitem.get(position).getTime());
+//                intent.putExtra("content",listitem.get(position).getContent());
+                intent.putExtra("news", listitem.get(position));
+                startActivityForResult(intent, 1);
             }
         });
+    }
+
+    //当通过startActivityForResult函数启动其他的安卓组件
+    //该组件发生返回动作时，就会调用此函数
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        Log.v("reStart", "requestCode" + requestCode + "resultCode" + resultCode);
+        //判断是否匹配成功
+        //requestCoded的值与resultCode的值不需要相等，
+        //但requestCoded的值需要与函数参数的int requestCode值相等
+        //resultCode的值需要与函数参数的int resultCode值相等
+        if (requestCode == resultCode) {
+            Toast.makeText(this, "数据返还：" + "" + intent.getBooleanExtra("isOverTime", false), Toast.LENGTH_SHORT).show();
+            if (intent.getBooleanExtra("isOverTime", false)) {
+                Log.v("", "OverTime");
+                Bundle extras = intent.getExtras();
+                News newsBack = (News)extras.get("news");
+                System.out.println(newsBack.getTitle());
+                for (int i = 0; i < listitem.size(); i++) {
+                    if (listitem.get(i).getId().equals(newsBack.getId())){
+                        listitem.remove(listitem.get(i));
+                        //改颜色
+                        newsBack.setColor(getResources().getColor(R.color.md_blue_grey_100));
+                        listitem.add(newsBack);
+                    }
+                }
+                Collections.sort(listitem);
+                ListViewAdapter adapter = new ListViewAdapter(MainActivity.this, R.layout.news_item, listitem);
+                listview.setAdapter(adapter);
+                Log.v("", "good");
+            }
+        }
     }
 }

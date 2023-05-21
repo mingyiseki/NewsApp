@@ -1,13 +1,22 @@
 package com.example.newsapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.newsapp.domain.News;
+import com.example.newsapp.util.TimeUtil;
+
+import java.util.Date;
+
 public class DetailActivity extends AppCompatActivity {
+
+    private News news;
+    private Intent intent;
+    private Date beginTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +27,49 @@ public class DetailActivity extends AppCompatActivity {
         TextView from = findViewById(R.id.tv_detail_from);
         TextView time = findViewById(R.id.tv_detail_time);
         TextView content = findViewById(R.id.tv_detail_content);
-        Intent intent = getIntent();
-        title.setText(intent.getStringExtra("title"));
-        from.setText(intent.getStringExtra("from"));
-        time.setText(intent.getStringExtra("time"));
-        content.setText(intent.getStringExtra("content"));
+        intent = getIntent();
+//        title.setText(intent.getStringExtra("title"));
+//        from.setText(intent.getStringExtra("from"));
+//        time.setText(intent.getStringExtra("time"));
+//        content.setText(intent.getStringExtra("content"));
+        //接收news对象对象
+        news = (News) intent.getSerializableExtra("news");
+
+        title.setText(news.getTitle());
+        from.setText(news.getFrom());
+        time.setText(news.getTime());
+        content.setText(news.getContent());
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.v("", "start");
+        beginTime = new Date();
+    }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        boolean isOverTime = new TimeUtil().isOverTime(beginTime, 1);
+//        int second = new TimeUtil().getSecond(beginTime);
+//        intent.setClass(this, MainActivity.class);
+//        intent.putExtra("isOverTime", isOverTime);
+//        setResult(1, intent);
+//        DetailActivity.this.finish();
+//        Log.v("发送", "" + isOverTime + second);
+//    }
+    @Override
+    public void onBackPressed() {
+        boolean isOverTime = new TimeUtil().isOverTime(beginTime, 30);
+        int second = new TimeUtil().getSecond(beginTime);
+        intent.setClass(this, MainActivity.class);
+        intent.putExtra("isOverTime", isOverTime);
+        intent.putExtra("news",news);
+        setResult(1, intent);
+        DetailActivity.this.finish();
+        Log.v("发送", "" + isOverTime + second);
+    }
+
 }

@@ -57,6 +57,10 @@ public class ListViewAdapter extends ArrayAdapter<News> {
         content.setText(news.getContent());
         from.setText(news.getFrom());
         time.setText(news.getTime());
+        title.setTextColor(news.getColor());
+        content.setTextColor(news.getColor());
+        from.setTextColor(news.getColor());
+        time.setTextColor(news.getColor());
         return convertView;
     }
 }
