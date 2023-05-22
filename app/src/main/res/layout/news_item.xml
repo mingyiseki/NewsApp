@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/iv_list1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         tools:srcCompat="@drawable/ic_launcher_background" />
 
     <RelativeLayout
@@ -35,7 +35,7 @@
         <TextView
             android:id="@+id/tv_list1_content"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/tv_list1_title"
             android:layout_alignParentStart="true"
             android:layout_marginStart="@dimen/start"

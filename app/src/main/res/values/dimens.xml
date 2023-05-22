@@ -7,7 +7,7 @@
     <dimen name="button_font_size">15sp</dimen>
     <dimen name="item_layout_height">50dp</dimen>
 
-    <dimen name="top">100dp</dimen>
+    <dimen name="top">40dp</dimen>
     <dimen name="switch_top">15dp</dimen>
     <dimen name="bottom">15dp</dimen>
     <dimen name="start">15dp</dimen>
@@ -16,4 +16,5 @@
     <dimen name="button_end">60dp</dimen>
     <dimen name="blank">5dp</dimen>
     <dimen name="title">25sp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

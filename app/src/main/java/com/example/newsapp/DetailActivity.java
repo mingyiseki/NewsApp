@@ -28,10 +28,6 @@ public class DetailActivity extends AppCompatActivity {
         TextView time = findViewById(R.id.tv_detail_time);
         TextView content = findViewById(R.id.tv_detail_content);
         intent = getIntent();
-//        title.setText(intent.getStringExtra("title"));
-//        from.setText(intent.getStringExtra("from"));
-//        time.setText(intent.getStringExtra("time"));
-//        content.setText(intent.getStringExtra("content"));
         //接收news对象对象
         news = (News) intent.getSerializableExtra("news");
 
@@ -49,17 +45,6 @@ public class DetailActivity extends AppCompatActivity {
         beginTime = new Date();
     }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        boolean isOverTime = new TimeUtil().isOverTime(beginTime, 1);
-//        int second = new TimeUtil().getSecond(beginTime);
-//        intent.setClass(this, MainActivity.class);
-//        intent.putExtra("isOverTime", isOverTime);
-//        setResult(1, intent);
-//        DetailActivity.this.finish();
-//        Log.v("发送", "" + isOverTime + second);
-//    }
     @Override
     public void onBackPressed() {
         boolean isOverTime = new TimeUtil().isOverTime(beginTime, 30);
