@@ -32,7 +32,7 @@ public class DetailActivity extends AppCompatActivity {
         news = (News) intent.getSerializableExtra("news");
 
         title.setText(news.getTitle());
-        from.setText(news.getFrom());
+        from.setText(news.getSource());
         time.setText(news.getTime());
         content.setText(news.getContent());
 

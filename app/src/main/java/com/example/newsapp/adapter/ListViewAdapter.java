@@ -64,12 +64,12 @@ public class ListViewAdapter extends ArrayAdapter<News> {
         imageView.setImageResource(news.getImage());
         title.setText(news.getTitle());
         content.setText(news.getContent());
-        from.setText(news.getFrom());
+        from.setText(news.getSource());
         time.setText(news.getTime());
-        title.setTextColor(news.getColor());
-        content.setTextColor(news.getColor());
-        from.setTextColor(news.getColor());
-        time.setTextColor(news.getColor());
+        title.setTextColor(news.getIsRead());
+        content.setTextColor(news.getIsRead());
+        from.setTextColor(news.getIsRead());
+        time.setTextColor(news.getIsRead());
 
         //横屏设置
         if (orientationLandscape == ORIENTATION_LANDSCAPE) {
@@ -88,8 +88,6 @@ public class ListViewAdapter extends ArrayAdapter<News> {
             from.setTextSize(12);
             time.setTextSize(12);
         }
-
-
         return convertView;
     }
 }

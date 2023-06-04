@@ -6,17 +6,29 @@ public class News implements Serializable,Comparable{
     private Long id;
     private String title;
     private String content;
-    private String from;
+    private String source;
     private String time;
     private int image;
-    private int color;
+    private int isRead;
 
-    public int getColor() {
-        return color;
+    public News(String title, String content, String source, String time, int image, int isRead) {
+        this.title = title;
+        this.content = content;
+        this.source = source;
+        this.time = time;
+        this.image = image;
+        this.isRead = isRead;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public News() {
+    }
+
+    public int getIsRead() {
+        return isRead;
+    }
+
+    public void setIsRead(int isRead) {
+        this.isRead = isRead;
     }
 
     public Long getId() {
@@ -51,12 +63,12 @@ public class News implements Serializable,Comparable{
         this.content = content;
     }
 
-    public String getFrom() {
-        return from;
+    public String getSource() {
+        return source;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getTime() {
@@ -70,5 +82,18 @@ public class News implements Serializable,Comparable{
     @Override
     public int compareTo(Object o) {
         return (int) (this.id-((News)o).getId());
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", source='" + source + '\'' +
+                ", time='" + time + '\'' +
+                ", image=" + image +
+                ", isRead=" + isRead +
+                '}';
     }
 }

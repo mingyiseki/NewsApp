@@ -45,7 +45,7 @@ public class FragmentDetail extends Fragment {
         if (bundle != null) {
             news = (News) bundle.getSerializable("news");
             title.setText(news.getTitle());
-            from.setText(news.getFrom());
+            from.setText(news.getSource());
             time.setText(news.getTime());
             content.setText(news.getContent());
         }
