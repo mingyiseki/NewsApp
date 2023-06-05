@@ -2,6 +2,7 @@ package com.example.newsapp;
 
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //从数据库获取资源
         //1.创建/打开数据库，数据库名为NewsTable.db
         helper = NewsOpenHelper.getInstance(this);
@@ -107,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
     @Override
     protected void onStop() {
         super.onStop();
+//        //清除数据库中数据
+//        for (int i = 1; i < 10; i ++) {
+//            helper.deleteById(i);
+//        }
+//        Toast.makeText(this, "清楚数据库中数据", Toast.LENGTH_SHORT).show();
         //关闭数据库连接
         helper.closeLink();
     }
@@ -177,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
     //该组件传回时，就会调用此函数改变颜色
     @Override
     public void sendData(News data) {
-        Toast.makeText(this, "已阅读新闻:" + data.getTitle(), Toast.LENGTH_SHORT).show();
         for (int i = 0; i < listitem.size(); i++) {
             if (listitem.get(i).getId().equals(data.getId())) {
                 listitem.remove(listitem.get(i));
@@ -217,11 +221,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
     public void Resource() {
         //如果数据库为空，则加载资源
         if (helper.queryAll().isEmpty()) {
-
+            Toast.makeText(this, "添加数据:", Toast.LENGTH_SHORT).show();
             // 设置适配器的图片资源
-            int[] imageId = new int[]{R.drawable.new1, R.drawable.black, R.drawable.hanjian};
+            int[] imageId = new int[]{R.drawable.new1, R.drawable.black, R.drawable.hanjian, R.drawable.news2};
             // 设置标题
-            String[] title = new String[]{"关注永雏塔菲", "小黑子露出鸡脚了", "骂谁罕见啊？"};
+            String[] title = new String[]{"关注永雏塔菲", "小黑子露出鸡脚了", "骂谁罕见啊？", "19个城市试点再生水循环利用 一起了解城市“第二水源”"};
             String[] context = new String[]{"taffy的名字“永雏塔菲”中的“永雏”来源于其王牌发明家的身份。扑克牌中“王牌”的英文是Ace[8]。将Ace以日语外来语方式表记时，以片假名写作「エイス」。再将「エイス」利用借字表示时，「エイ」可表示为「永」，「ス」可表示为「鶵」[注 2]。简体字即为“永雏”。所以姓氏是写作永雏读作Ace。[6]\n" +
                     "\n" +
                     "而名字中的“塔菲”是从Taffy音译而来，并无特殊含义。[6]\n" +
@@ -364,7 +368,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
                     "作者：a9f808df5f1a\n" +
                     "链接：https://www.jianshu.com/p/a3d480c4e0a7\n" +
                     "来源：简书\n" +
-                    "著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。", "一只有着人类的血脉的吸血鬼，不会吸血，甚至有点晕血。\n" +
+                    "著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。",
+                    "一只有着人类的血脉的吸血鬼，不会吸血，甚至有点晕血。\n" +
                     "\n" +
                     "目前活跃在Bilibili和Youtube上，可熟练进行中、日、英三语直播。\n" +
                     "\n" +
@@ -383,9 +388,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
                     "头上的花是芍药花。\n" +
                     "\n" +
                     "阅读更多：东雪莲（https://zh.moegirl.org.cn/%E4%B8%9C%E9%9B%AA%E8%8E%B2 ）\n" +
-                    "本文引自萌娘百科(https://zh.moegirl.org.cn )，文字内容默认使用《知识共享 署名-非商业性使用-相同方式共享 3.0 中国大陆》协议。"};
+                    "本文引自萌娘百科(https://zh.moegirl.org.cn )，文字内容默认使用《知识共享 署名-非商业性使用-相同方式共享 3.0 中国大陆》协议。",
+                    "正在上大学的小王非常喜欢小动物，晚上下课后经常会去喂校园里的流浪猫。前一天晚上，她照常从寝室里拿出猫粮去喂食，可是一不小心手指被小猫尖利的牙齿划出了小口子。回到寝室后，她反复用自来水冲洗，因为没有明显出血，便想着第二天再前往医院进一步处理。 浙江医院急诊科副主任陈闯副主任医师表示，最近像小王这样的急诊患者不在少数，尤其是进入5月后，宠物伤人的病例明显增多，每日来院初诊的就有30余例。天气正越来越热，猫猫狗狗等宠物也会因为温度变得兴奋、脾气暴躁。并且，大家穿着“清凉”，皮肤露出较多，此时更容易发生被挠伤、咬伤的情况。 而这些小伤口带来的危险性极高，因为可能会引发凶险的狂犬病。这是一种由狂犬病病毒感染引起的一种动物源性传染病，一旦发作尚无有效治疗手段，病死率100%.陈闯指出，狂犬病易感动物是犬科、猫科及蝙蝠等胎生哺乳动物，其潜伏期通常为1-3个月，99%的患者在一年内发作，最初症状是发热，伤口处常有刺痛、灼痛感。随着病毒在中枢神经系统扩散，发展为可致命的进行性脑脊髓炎，具体分两种情况：狂躁型患者症状为机能亢进、躁动、恐水，数日后因心肺衰竭而亡；麻痹型患者症状不那么剧烈，但病程长，从咬伤或抓伤部位开始，肌肉逐渐麻痹，后逐渐呼吸、心力衰竭，最终导致死亡。"};
 
-            String[] source = new String[]{"永雏塔菲", "坤哥", "東雪莲"};
+            String[] source = new String[]{"永雏塔菲", "坤哥", "東雪莲", "央视网"};
             //时间
             String time = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
             //黑色
@@ -395,6 +401,9 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
                 //将数据插入到数据库对应的表中
                 News news = new News(title[i], context[i], source[i], time, imageId[i], blackColor);
                 if (helper.insert(news) > 0) {
+                    Intent intent =new Intent("com.example.newsapp.receiver.MY_BROADCAST");
+                    intent.putExtra("extraKey","今天有新的新闻，请查看");
+                    sendBroadcast(intent);
                     Toast.makeText(this, "添加数据:" + news, Toast.LENGTH_SHORT).show();
                 }
             }
