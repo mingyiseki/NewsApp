@@ -15,14 +15,13 @@
         android:orientation="horizontal">
     </ListView>
 
-
     <!-- 装载详情的Fragment 的容器 -->
     <!-- 傻逼csdn博主说ListView能装fragment，一直报错浪费我时间 -->
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/detail_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-    </LinearLayout >
+    </FrameLayout >
 
 </LinearLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -76,7 +77,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
         else if (ori == Configuration.ORIENTATION_PORTRAIT) {
             Toast.makeText(MainActivity.this, "现在是竖屏", Toast.LENGTH_LONG).show();
             setContentView(R.layout.acticity_main);
-
+            Button download = findViewById(R.id.btn_download);
+            download.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, addForm.class);
+                startActivity(intent);
+            });
             listview = findViewById(R.id.list_view);
             ListViewAdapter adapter = new ListViewAdapter(MainActivity.this, R.layout.news_item, listitem, Configuration.ORIENTATION_PORTRAIT);
             listview.setAdapter(adapter);
@@ -105,17 +110,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-//        //清除数据库中数据
-//        for (int i = 1; i < 10; i ++) {
-//            helper.deleteById(i);
-//        }
-//        Toast.makeText(this, "清楚数据库中数据", Toast.LENGTH_SHORT).show();
+    protected void onDestroy() {
+        super.onDestroy();
         //关闭数据库连接
         helper.closeLink();
     }
-
 
     private void reload() {
         listitem = helper.queryAll();
@@ -402,12 +401,11 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
                 News news = new News(title[i], context[i], source[i], time, imageId[i], blackColor);
                 if (helper.insert(news) > 0) {
                     //发送自定义广播
-                    Intent intent =new Intent("com.example.newsapp.receiver.MY_BROADCAST");
+                    Intent intent =new Intent("addNews");
                     //直接发送广播
-                    sendBroadcast(intent);
-                    intent.putExtra("extraKey","今天有新的新闻，请查看");
+                    intent.putExtra("newsInfo","今天有新的新闻，请查看");
                     //发送只有带有指定权限的接收器才能收到的广播
-                    sendBroadcast(intent, "com.example.myPermission");
+                    sendBroadcast(intent);
                     Toast.makeText(this, "添加数据:" + news, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -430,8 +428,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
             helper.updateById(news);
         }
         listitem = helper.queryAll();
-
-
     }
 
 

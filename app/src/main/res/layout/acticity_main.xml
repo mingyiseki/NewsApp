@@ -5,6 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start"
+            android:layout_marginEnd="@dimen/end"
+            android:layout_marginTop="@dimen/switch_top"
+            android:layout_marginBottom="5dp"
+            android:text="新闻栏"
+            android:textSize="35sp"/>
+        <Button
+            android:id="@+id/btn_download"
+            android:layout_width="100dp"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="@dimen/end"
+            android:layout_marginBottom="@dimen/bottom"
+            android:layout_height="wrap_content"
+            android:text="添加" />
+    </LinearLayout>
     <ListView
         android:id="@+id/list_view"
         android:layout_width="match_parent"

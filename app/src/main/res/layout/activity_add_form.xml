@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/floralwhite"
+    android:orientation="vertical"
+    tools:context=".addForm">
+
+    <LinearLayout
+        android:id="@+id/ll_add_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_layout_height"
+        android:layout_marginStart="@dimen/start"
+        android:layout_marginTop="@dimen/switch_top"
+        android:layout_marginEnd="@dimen/end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_add_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/common_font_size" />
+
+        <EditText
+            android:id="@+id/et_add_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/blank"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="@string/title_input"
+            android:textColor="@color/bg_black"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/common_font_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_content"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_marginStart="@dimen/start"
+        android:layout_marginTop="@dimen/switch_top"
+        android:layout_marginEnd="@dimen/end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_add_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:text="@string/content"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/common_font_size" />
+
+        <EditText
+            android:id="@+id/et_add_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/blank"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:gravity="top"
+            android:hint="@string/content_input"
+            android:textColor="@color/bg_black"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/common_font_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_source"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_layout_height"
+        android:layout_marginStart="@dimen/start"
+        android:layout_marginTop="@dimen/switch_top"
+        android:layout_marginEnd="@dimen/end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_add_source"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/source"
+            android:textColor="@color/bg_black"
+            android:textSize="@dimen/common_font_size" />
+
+        <EditText
+            android:id="@+id/et_add_source"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/blank"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="@string/source_input"
+            android:textColor="@color/bg_black"
+            android:textColorHint="@color/grey"
+            android:textSize="@dimen/common_font_size" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_addNews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加新闻"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="627dp" />
+</LinearLayout>

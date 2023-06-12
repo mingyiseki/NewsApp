@@ -86,14 +86,14 @@ public class News implements Serializable,Comparable{
 
     @Override
     public String toString() {
-        return "News{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", source='" + source + '\'' +
-                ", time='" + time + '\'' +
-                ", image=" + image +
-                ", isRead=" + isRead +
-                '}';
+        return "新闻详情{\n" +
+                "新闻id=" + id +
+                ", \n新闻标题='" + title + '\'' +
+                ", \n新闻内容='" + content + '\'' +
+                ", \n新闻来源='" + source + '\'' +
+                ", \n创建时间='" + time + '\'' +
+                ", \n图片来源=" + image +
+                ", \n是否已读=" + isRead +
+                "\n}";
     }
 }
