@@ -10,6 +10,7 @@ public class MyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String customValue = intent.getStringExtra("extraKey");
-        Toast.makeText(context, customValue, Toast.LENGTH_SHORT).show();
+        //收到指定广播
+        Log.d("cc", customValue);
     }
 }

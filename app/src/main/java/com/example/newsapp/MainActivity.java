@@ -401,9 +401,13 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
                 //将数据插入到数据库对应的表中
                 News news = new News(title[i], context[i], source[i], time, imageId[i], blackColor);
                 if (helper.insert(news) > 0) {
+                    //发送自定义广播
                     Intent intent =new Intent("com.example.newsapp.receiver.MY_BROADCAST");
-                    intent.putExtra("extraKey","今天有新的新闻，请查看");
+                    //直接发送广播
                     sendBroadcast(intent);
+                    intent.putExtra("extraKey","今天有新的新闻，请查看");
+                    //发送只有带有指定权限的接收器才能收到的广播
+                    sendBroadcast(intent, "com.example.myPermission");
                     Toast.makeText(this, "添加数据:" + news, Toast.LENGTH_SHORT).show();
                 }
             }
