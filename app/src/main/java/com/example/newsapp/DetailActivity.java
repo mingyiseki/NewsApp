@@ -65,6 +65,8 @@ public class DetailActivity extends AppCompatActivity {
                     helper.openWriteLink();
                 }
                 helper.deleteById(Math.toIntExact(news.getId()));
+                Intent intentSuccess = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intentSuccess);
 
             }
         });

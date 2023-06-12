@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements FragmentDetail.My
           竖屏模式配置
          */
         else if (ori == Configuration.ORIENTATION_PORTRAIT) {
-            Toast.makeText(MainActivity.this, "现在是竖屏", Toast.LENGTH_LONG).show();
             setContentView(R.layout.acticity_main);
             Button download = findViewById(R.id.btn_download);
             download.setOnClickListener(v -> {

@@ -63,6 +63,9 @@ public class addForm extends AppCompatActivity {
                     registerReceiver(myReceiver, intentFilter);
                     sendBroadcast(intent);
                     Log.d(TAG, "添加数据:" + news);
+
+                    Intent intentSuccess = new Intent(addForm.this, MainActivity.class);
+                    startActivity(intentSuccess);
                 }
             }
         });
